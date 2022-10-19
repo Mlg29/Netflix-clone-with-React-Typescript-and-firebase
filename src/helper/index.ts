@@ -1,36 +1,23 @@
 
-
 import axios from "axios";
 
-const API_KEY = ""
+const BASE_URL = "https://api.themoviedb.org/3"
 
-const instance = axios.create({
-    baseURL: 'https://api.themoviedb.org/3'
-})
+export const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/"
 
-const requests = {
-    fetchTrending: "",
-    fetchNetflixOriginals: "",
-    fetchTopRated: "",
-    fetchActionMovies: "",
-    fetchComedyMovie: "",
-    fetchHorrowMovies: "",
-    fetchRomanceMovies: "",
-    fetchDocumentaries: ""
-}
 
 export const getRequest = async (url: string) => {
-    return await axios.get(url)
+    return await axios.get(BASE_URL + url)
 }
 
 export const postRequest = async (url: string, payload: any) => {
-    return await axios.post(url, payload)
+    return await axios.post(BASE_URL + url, payload)
 }
 
 export const updateRequest = (url: string, payload: any) => {
-    return axios.put(url, payload)
+    return axios.put(BASE_URL + url, payload)
 }
 
 export const deleteRequest = (url: string) => {
-    return axios.delete(url)
+    return axios.delete(BASE_URL + url)
 }

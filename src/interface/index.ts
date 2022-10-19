@@ -5,3 +5,10 @@ export interface AuthState {
     loading: boolean,
     error: any
   }
+
+  
+export interface MovieState {
+  data: any,
+  loading: boolean,
+  error: any
+}
