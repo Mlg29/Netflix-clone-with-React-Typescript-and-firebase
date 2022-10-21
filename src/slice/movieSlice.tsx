@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../app/store'
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+// import type { PayloadAction } from '@reduxjs/toolkit'
+// import type { RootState } from '../app/store'
 import { AuthState, MovieState } from '../interface'
 import { getRequest } from '../helper'
 import requests from '../helper/request'
@@ -18,13 +18,13 @@ export const fetchMovie = createAsyncThunk(
     async () => {
         try {
             var response = await getRequest(requests?.fetchNetflixOriginals)
-            if(response?.status === 200) {
+            if (response?.status === 200) {
                 return response?.data
             }
-            
+
         }
         catch (e) {
-
+            console.log({e})
         }
     }
 )
@@ -37,14 +37,15 @@ export const movieSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchMovie.pending, (state, action) => {
             state.loading = true
-        }),
+        })
             builder.addCase(fetchMovie.fulfilled, (state, action: PayloadAction<any>) => {
                 state.loading = false
-            }),
+            })
             builder.addCase(fetchMovie.rejected, (state, action) => {
                 state.loading = false
             })
-    }
+    },
+
 })
 
 

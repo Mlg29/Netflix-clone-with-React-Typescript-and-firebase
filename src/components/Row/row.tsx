@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch } from '../../app/hooks'
+
 import { RowType } from '../../types'
-import { fetchMovie } from '../../slice/movieSlice'
 import { getRequest, IMG_BASE_URL } from '../../helper'
 import "./row.css"
 
-const row: React.FC<RowType> = ({ title, fetchUrl, isLargeRow = false }) => {
-    const [movies, setMovies] = useState([])
-    const dispatch = useAppDispatch()
+const Row: React.FC<RowType> = ({ title, fetchUrl, isLargeRow = false }) => {
+    const [movies, setMovies] = useState<Array<any>>([])
 
     useEffect(() => {
 
@@ -19,6 +17,8 @@ const row: React.FC<RowType> = ({ title, fetchUrl, isLargeRow = false }) => {
         fetchData()
 
     }, [fetchUrl])
+
+
 
     return (
         <div className='row'>
@@ -43,4 +43,4 @@ const row: React.FC<RowType> = ({ title, fetchUrl, isLargeRow = false }) => {
     )
 }
 
-export default row
+export default Row

@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginScreen from './screens/LoginScreen';
+import { useAppSelector } from './app/hooks';
+import { userToken } from './slice/authSlice';
 
 function App() {
-  const user = null;
+  
+  var userTok = localStorage.getItem('token')
+
+  const token = useAppSelector(userToken)
+
+
+  console.log({userTok, token})
+  
 
   return (
     <div className="app">
       {
-        !user ? <LoginScreen />
+        token?.length < 1 && !userTok ? <LoginScreen />
           :
           <Router>
             <Routes>

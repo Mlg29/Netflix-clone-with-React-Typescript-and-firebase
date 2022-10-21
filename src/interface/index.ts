@@ -2,6 +2,7 @@
 
 export interface AuthState {
     info: any,
+    token: string,
     loading: boolean,
     error: any
   }
